@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film index{% endblock %}
+
+{% block body %}
+        <p style='margin:3%'>Filtrer :</p>
+        <p >Nom du film : <a href="{{ path('film_title_asc') }}" >ASC</a>   <a href="{{ path('film_title_desc')}}" >DESC</a></p><br>
+        <p>Genre du film : <a href="{{ path('film_category_asc') }}">ASC</a>   <a href="{{ path('film_category_desc') }}" >DESC</a></p><br>
+        <p>Nombre de location : <a href="{{ path('film_rental_asc') }}" >ASC</a>   <a href="{{ path('film_rental_desc') }}" >DESC</a></p><br>
+
+    <table class="">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Prix Location</th>
+                <th>Classement</th>
+                <th>Catégorie</th>
+                <th>Nombre de Location</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for film in films %}
+            <tr>
+                <td>{{ film.title }}</td>
+                <td>{{ film.rental_rate }}</td>
+                <td>{{ film.rating }}</td>
+                <td>{{ film.name }}</td>
+                <td>{{ film.rental_number }}</td>
+                <td>
+            
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {{knp_pagination_render(films)}}
+
+{% endblock %}
